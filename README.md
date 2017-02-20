@@ -7,3 +7,5 @@ This Repository is intended for Storing all PM Stuffs
 - Issues
   - [Weekly Hightlighs](https://github.com/nowhere-cloud/Project-Management/issues)
   - [DNS Server](https://github.com/nowhere-cloud/ruby-dns/issues)
+- Kanban
+  - [Overall](https://github.com/orgs/nowhere-cloud/projects/1)
