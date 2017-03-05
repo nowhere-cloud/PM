@@ -109,4 +109,4 @@ services:
     image: nowherecloud/node-mongo-syslog:latest
 deploy:
   restart_policy:
-    condition: on-failure
+    condition: always
