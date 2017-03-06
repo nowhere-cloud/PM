@@ -7,9 +7,9 @@ services:
     image: mvertes/alpine-mongo:latest
   mysql:
     environment:
-      - MYSQL_DATABASE='${MYSQL_DB}'
-      - MYSQL_USER='${MYSQL_USER}'
-      - MYSQL_PASSWORD='$(MYSQL_PASS}'
+      - 'MYSQL_DATABASE=${MYSQL_DB}'
+      - 'MYSQL_USER=${MYSQL_USER}'
+      - 'MYSQL_PASSWORD=$(MYSQL_PASS}'
       - MYSQL_RANDOM_ROOT_PASSWORD=yes
     image: mysql/mysql-server:latest
   bind:
@@ -22,12 +22,12 @@ services:
       - 10.1.113.4:53:53/udp
     environment:
       - DNS_TTL=10
-      - DNS_SUFFIX='${DNS_SUFFIX}'
-      - MYSQL_USER='${MYSQL_USER}'
-      - MYSQL_PASS='$(MYSQL_PASS}'
-      - MYSQL_DB='${MYSQL_DB}'
+      - 'DNS_SUFFIX=${DNS_SUFFIX}'
+      - 'MYSQL_USER=${MYSQL_USER}'
+      - 'MYSQL_PASS=$(MYSQL_PASS}'
+      - 'MYSQL_DB=${MYSQL_DB}'
       - USE_DOCKER_BIND=true
-      - AMQP_URI='${AMQP_URI}'
+      - 'AMQP_URI=${AMQP_URI}'
     image: nowherecloud/ruby-dns:latest
     links:
       - bind:bind1
@@ -40,12 +40,12 @@ services:
       - 10.1.113.5:53:53/udp
     environment:
       - DNS_TTL=10
-      - DNS_SUFFIX='${DNS_SUFFIX}'
-      - MYSQL_USER='${MYSQL_USER}'
-      - MYSQL_PASS='$(MYSQL_PASS}'
-      - MYSQL_DB='${MYSQL_DB}'
+      - 'DNS_SUFFIX=${DNS_SUFFIX}'
+      - 'MYSQL_USER=${MYSQL_USER}'
+      - 'MYSQL_PASS=$(MYSQL_PASS}'
+      - 'MYSQL_DB=${MYSQL_DB}'
       - USE_DOCKER_BIND=true
-      - AMQP_URI='${AMQP_URI}'
+      - 'AMQP_URI=${AMQP_URI}'
     image: nowherecloud/ruby-dns:latest
     links:
       - bind:bind1
@@ -58,12 +58,12 @@ services:
       - 10.1.123.11:53:53/udp
     environment:
       - DNS_TTL=10
-      - DNS_SUFFIX='${DNS_SUFFIX}'
-      - MYSQL_USER='${MYSQL_USER}'
-      - MYSQL_PASS='$(MYSQL_PASS}'
-      - MYSQL_DB='${MYSQL_DB}'
+      - 'DNS_SUFFIX=${DNS_SUFFIX}'
+      - 'MYSQL_USER=${MYSQL_USER}'
+      - 'MYSQL_PASS=$(MYSQL_PASS}'
+      - 'MYSQL_DB=${MYSQL_DB}'
       - USE_DOCKER_BIND=true
-      - AMQP_URI='${AMQP_URI}'
+      - 'AMQP_URI=${AMQP_URI}'
     image: nowherecloud/ruby-dns:latest
     links:
       - bind:bind1
@@ -76,12 +76,12 @@ services:
       - 10.1.113.6:53:53/udp
     environment:
       - DNS_TTL=10
-      - DNS_SUFFIX='${DNS_SUFFIX}'
-      - MYSQL_USER='${MYSQL_USER}'
-      - MYSQL_PASS='$(MYSQL_PASS}'
-      - MYSQL_DB='${MYSQL_DB}'
+      - 'DNS_SUFFIX=${DNS_SUFFIX}'
+      - 'MYSQL_USER=${MYSQL_USER}'
+      - 'MYSQL_PASS=$(MYSQL_PASS}'
+      - 'MYSQL_DB=${MYSQL_DB}'
       - USE_DOCKER_BIND=true
-      - AMQP_URI='${AMQP_URI}'
+      - 'AMQP_URI=${AMQP_URI}'
     image: nowherecloud/ruby-dns:latest
     links:
       - bind:bind1
@@ -90,9 +90,9 @@ services:
       - rabbitmq:nowhere-rabbitmq
   xen-api:
     environment:
-      - AMQP_URI='${AMQP_URI}'
-      - XAPI_PATH='${XAPI_PATH}'
-      - XAPI_PASS='${XAPI_PASS}'
+      - 'AMQP_URI=${AMQP_URI}'
+      - 'XAPI_PATH=${XAPI_PATH}'
+      - 'XAPI_PASS=${XAPI_PASS}'
     image: nowherecloud/xen-api:latest
     links:
       - rabbitmq:nowhere-rabbitmq
@@ -101,8 +101,8 @@ services:
       - 10.1.123.11:514:514/tcp
       - 10.1.123.11:514:514/udp
     environment:
-      - MONGODB_URI='${MOMGODB_URI}'
-      - AMQP_URI='${AMQP_URI}'
+      - 'MONGODB_URI=${MOMGODB_URI}'
+      - 'AMQP_URI=${AMQP_URI}'
     links:
       - rabbitmq:nowhere-rabbitmq
       - mongodb:nowhere-mongodb
