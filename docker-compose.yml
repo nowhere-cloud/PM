@@ -117,6 +117,3 @@ services:
       - mongodb:nowhere-mongodb
     restart: always
     image: nowherecloud/node-mongo-syslog:latest
-  deploy:
-    restart_policy:
-      condition: always
