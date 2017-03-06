@@ -52,24 +52,6 @@ services:
       - bind:bind2
       - mysql:mysql
       - rabbitmq:nowhere-rabbitmq
-  dns-vlan20-11:
-    ports:
-      - 10.1.123.11:53:53/tcp
-      - 10.1.123.11:53:53/udp
-    environment:
-      - DNS_TTL=10
-      - 'DNS_SUFFIX=${DNS_SUFFIX}'
-      - 'MYSQL_USER=${MYSQL_USER}'
-      - 'MYSQL_PASS=${MYSQL_PASS}'
-      - 'MYSQL_DB=${MYSQL_DB}'
-      - USE_DOCKER_BIND=true
-      - 'AMQP_URI=${AMQP_URI}'
-    image: nowherecloud/ruby-dns:latest
-    links:
-      - bind:bind1
-      - bind:bind2
-      - mysql:mysql
-      - rabbitmq:nowhere-rabbitmq
   dns-vlan10-06:
     ports:
       - 10.1.113.6:53:53/tcp
@@ -79,6 +61,24 @@ services:
       - 'DNS_SUFFIX=${DNS_SUFFIX}'
       - 'MYSQL_USER=${MYSQL_USER}'
       - 'MYSQL_PASS=$(MYSQL_PASS}'
+      - 'MYSQL_DB=${MYSQL_DB}'
+      - USE_DOCKER_BIND=true
+      - 'AMQP_URI=${AMQP_URI}'
+    image: nowherecloud/ruby-dns:latest
+    links:
+      - bind:bind1
+      - bind:bind2
+      - mysql:mysql
+      - rabbitmq:nowhere-rabbitmq
+  dns-vlan20-11:
+    ports:
+      - 10.1.123.11:53:53/tcp
+      - 10.1.123.11:53:53/udp
+    environment:
+      - DNS_TTL=10
+      - 'DNS_SUFFIX=${DNS_SUFFIX}'
+      - 'MYSQL_USER=${MYSQL_USER}'
+      - 'MYSQL_PASS=${MYSQL_PASS}'
       - 'MYSQL_DB=${MYSQL_DB}'
       - USE_DOCKER_BIND=true
       - 'AMQP_URI=${AMQP_URI}'
