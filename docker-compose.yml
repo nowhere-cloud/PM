@@ -9,7 +9,7 @@ services:
     environment:
       - 'MYSQL_DATABASE=${MYSQL_DB}'
       - 'MYSQL_USER=${MYSQL_USER}'
-      - 'MYSQL_PASSWORD=$(MYSQL_PASS}'
+      - 'MYSQL_PASSWORD=${MYSQL_PASS}'
       - MYSQL_RANDOM_ROOT_PASSWORD=yes
     image: mysql/mysql-server:latest
   bind:
@@ -24,7 +24,7 @@ services:
       - DNS_TTL=10
       - 'DNS_SUFFIX=${DNS_SUFFIX}'
       - 'MYSQL_USER=${MYSQL_USER}'
-      - 'MYSQL_PASS=$(MYSQL_PASS}'
+      - 'MYSQL_PASS=${MYSQL_PASS}'
       - 'MYSQL_DB=${MYSQL_DB}'
       - USE_DOCKER_BIND=true
       - 'AMQP_URI=${AMQP_URI}'
@@ -42,7 +42,7 @@ services:
       - DNS_TTL=10
       - 'DNS_SUFFIX=${DNS_SUFFIX}'
       - 'MYSQL_USER=${MYSQL_USER}'
-      - 'MYSQL_PASS=$(MYSQL_PASS}'
+      - 'MYSQL_PASS=${MYSQL_PASS}'
       - 'MYSQL_DB=${MYSQL_DB}'
       - USE_DOCKER_BIND=true
       - 'AMQP_URI=${AMQP_URI}'
@@ -60,7 +60,7 @@ services:
       - DNS_TTL=10
       - 'DNS_SUFFIX=${DNS_SUFFIX}'
       - 'MYSQL_USER=${MYSQL_USER}'
-      - 'MYSQL_PASS=$(MYSQL_PASS}'
+      - 'MYSQL_PASS=${MYSQL_PASS}'
       - 'MYSQL_DB=${MYSQL_DB}'
       - USE_DOCKER_BIND=true
       - 'AMQP_URI=${AMQP_URI}'
