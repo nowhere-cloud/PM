@@ -60,7 +60,7 @@ services:
       - DNS_TTL=10
       - 'DNS_SUFFIX=${DNS_SUFFIX}'
       - 'MYSQL_USER=${MYSQL_USER}'
-      - 'MYSQL_PASS=$(MYSQL_PASS}'
+      - 'MYSQL_PASS=${MYSQL_PASS}'
       - 'MYSQL_DB=${MYSQL_DB}'
       - USE_DOCKER_BIND=true
       - 'AMQP_URI=${AMQP_URI}'
