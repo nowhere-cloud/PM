@@ -101,7 +101,7 @@ services:
       - 10.1.123.11:514:514/tcp
       - 10.1.123.11:514:514/udp
     environment:
-      - 'MONGODB_URI=${MOMGODB_URI}'
+      - 'MONGODB_URI=${MONGODB_URI}'
       - 'AMQP_URI=${AMQP_URI}'
     links:
       - rabbitmq:nowhere-rabbitmq
