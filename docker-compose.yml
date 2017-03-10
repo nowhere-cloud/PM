@@ -117,3 +117,14 @@ services:
       - mongodb:nowhere-mongodb
     restart: always
     image: nowherecloud/node-mongo-syslog:latest
+  api-gate:
+    ports:
+      - 3000:3000
+    environment:
+      - 'MONGODB_URI=${MONGODB_URI}'
+      - 'AMQP_URI=${AMQP_URI}'
+    links:
+      - rabbitmq:nowhere-rabbitmq
+      - mongodb:nowhere-mongodb
+    build: ./node-api-gate-master/
+
