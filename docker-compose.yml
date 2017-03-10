@@ -111,10 +111,8 @@ services:
       - 10.1.123.11:514:514/udp
     environment:
       - 'MONGODB_URI=${MONGODB_URI}'
-      - 'AMQP_URI=${AMQP_URI}'
     links:
       - rabbitmq:nowhere-rabbitmq
-      - mongodb:nowhere-mongodb
     restart: always
     image: nowherecloud/node-mongo-syslog:latest
   api-gate:
