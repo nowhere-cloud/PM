@@ -112,7 +112,7 @@ services:
     environment:
       - 'MONGODB_URI=${MONGODB_URI}'
     links:
-      - rabbitmq:nowhere-rabbitmq
+      - mongodb:nowhere-mongodb
     restart: always
     image: nowherecloud/node-mongo-syslog:latest
   api-gate:
