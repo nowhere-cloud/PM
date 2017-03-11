@@ -121,8 +121,12 @@ services:
     environment:
       - 'MONGODB_URI=${MONGODB_URI}'
       - 'AMQP_URI=${AMQP_URI}'
+      - 'MYSQL_USER=${MYSQL_USER}'
+      - 'MYSQL_PASS=${MYSQL_PASS}'
+      - 'MYSQL_DB=${MYSQL_DB}'
     links:
       - rabbitmq:nowhere-rabbitmq
       - mongodb:nowhere-mongodb
+      - mysql:mysql
     build: ./node-api-gate-master/
 
