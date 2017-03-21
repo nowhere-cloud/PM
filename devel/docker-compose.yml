@@ -132,4 +132,4 @@ services:
       - mongodb:nowhere-mongodb
       - mysql:mysql
       - xen-api:xen-mid-rest
-    build: ../node-api-gate/
+    build: ../../node-api-gate/
