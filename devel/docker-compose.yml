@@ -37,16 +37,43 @@ services:
       - bind:bind1
       - bind:bind2
       - mysql:mysql
-  xen-api:
+  xen-api-blk:
     environment:
       - 'AMQP_URI=${AMQP_URI}'
       - 'XAPI_PATH=${XAPI_PATH}'
       - 'XAPI_PORT=${XAPI_PORT}'
       - 'XAPI_PASS=${XAPI_PASS}'
     restart: always
-    build: ../../xen-api/
+    build: ../../xen-api/docker/blk/
     links:
       - rabbitmq:nowhere-rabbitmq
+  xen-api-net:
+    environment:
+      - 'AMQP_URI=${AMQP_URI}'
+      - 'XAPI_PATH=${XAPI_PATH}'
+      - 'XAPI_PORT=${XAPI_PORT}'
+      - 'XAPI_PASS=${XAPI_PASS}'
+    restart: always
+    build: ../../xen-api/docker/net/
+    links:
+      - rabbitmq:nowhere-rabbitmq
+  xen-api-vm:
+    environment:
+      - 'AMQP_URI=${AMQP_URI}'
+      - 'XAPI_PATH=${XAPI_PATH}'
+      - 'XAPI_PORT=${XAPI_PORT}'
+      - 'XAPI_PASS=${XAPI_PASS}'
+    restart: always
+    build: ../../xen-api/docker/vm/
+    links:
+      - rabbitmq:nowhere-rabbitmq
+  xen-api:
+    environment:
+      - 'XAPI_PATH=${XAPI_PATH}'
+      - 'XAPI_PORT=${XAPI_PORT}'
+      - 'XAPI_PASS=${XAPI_PASS}'
+    restart: always
+    build: ../../xen-api/docker/rest/
   syslog-collector:
     ports:
       - 65514:514/tcp

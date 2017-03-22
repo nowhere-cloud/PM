@@ -88,6 +88,36 @@ services:
       - bind:bind1
       - bind:bind2
       - mysql:mysql
+  xen-api-blk:
+    environment:
+      - 'AMQP_URI=${AMQP_URI}'
+      - 'XAPI_PATH=${XAPI_PATH}'
+      - 'XAPI_PORT=${XAPI_PORT}'
+      - 'XAPI_PASS=${XAPI_PASS}'
+    restart: always
+    image: nowherecloud/xen-api:block
+    links:
+      - rabbitmq:nowhere-rabbitmq
+  xen-api-net:
+    environment:
+      - 'AMQP_URI=${AMQP_URI}'
+      - 'XAPI_PATH=${XAPI_PATH}'
+      - 'XAPI_PORT=${XAPI_PORT}'
+      - 'XAPI_PASS=${XAPI_PASS}'
+    restart: always
+    image: nowherecloud/xen-api:net
+    links:
+      - rabbitmq:nowhere-rabbitmq
+  xen-api-vm:
+    environment:
+      - 'AMQP_URI=${AMQP_URI}'
+      - 'XAPI_PATH=${XAPI_PATH}'
+      - 'XAPI_PORT=${XAPI_PORT}'
+      - 'XAPI_PASS=${XAPI_PASS}'
+    restart: always
+    image: nowherecloud/xen-api:vm
+    links:
+      - rabbitmq:nowhere-rabbitmq
   xen-api:
     environment:
       - 'AMQP_URI=${AMQP_URI}'
@@ -95,7 +125,7 @@ services:
       - 'XAPI_PORT=${XAPI_PORT}'
       - 'XAPI_PASS=${XAPI_PASS}'
     restart: always
-    image: nowherecloud/xen-api:latest
+    image: nowherecloud/xen-api:rest
     links:
       - rabbitmq:nowhere-rabbitmq
   syslog-collector:
