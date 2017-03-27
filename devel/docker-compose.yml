@@ -3,23 +3,23 @@ services:
   rabbitmq:
     hostname: nowhere-rabbitmq
     image: rabbitmq:3-alpine
-    restart: always
+
   mongodb:
     image: mvertes/alpine-mongo:latest
-    restart: always
+
   mysql:
     environment:
       - 'MYSQL_DATABASE=${MYSQL_DB}'
       - 'MYSQL_USER=${MYSQL_USER}'
       - 'MYSQL_PASSWORD=${MYSQL_PASS}'
       - MYSQL_RANDOM_ROOT_PASSWORD=yes
-    restart: always
     image: mysql/mysql-server:latest
+
   bind:
     image: ventz/bind
-    restart: always
     volumes:
       - '../prod/etc/bind:/etc/bind'
+
   dns-vlan20-11:
     ports:
       - 65053:53/tcp
@@ -31,49 +31,49 @@ services:
       - 'MYSQL_PASS=${MYSQL_PASS}'
       - 'MYSQL_DB=${MYSQL_DB}'
       - USE_DOCKER_BIND=true
-    restart: always
     build: ../../ruby-dns/
     links:
       - bind:bind1
       - bind:bind2
       - mysql:mysql
+
   xen-api-blk:
     environment:
       - 'AMQP_URI=${AMQP_URI}'
       - 'XAPI_PATH=${XAPI_PATH}'
       - 'XAPI_PORT=${XAPI_PORT}'
       - 'XAPI_PASS=${XAPI_PASS}'
-    restart: always
     build: ../../xen-api/docker/blk/
     links:
       - rabbitmq:nowhere-rabbitmq
+
   xen-api-net:
     environment:
       - 'AMQP_URI=${AMQP_URI}'
       - 'XAPI_PATH=${XAPI_PATH}'
       - 'XAPI_PORT=${XAPI_PORT}'
       - 'XAPI_PASS=${XAPI_PASS}'
-    restart: always
     build: ../../xen-api/docker/net/
     links:
       - rabbitmq:nowhere-rabbitmq
+
   xen-api-vm:
     environment:
       - 'AMQP_URI=${AMQP_URI}'
       - 'XAPI_PATH=${XAPI_PATH}'
       - 'XAPI_PORT=${XAPI_PORT}'
       - 'XAPI_PASS=${XAPI_PASS}'
-    restart: always
     build: ../../xen-api/docker/vm/
     links:
       - rabbitmq:nowhere-rabbitmq
+
   xen-api:
     environment:
       - 'XAPI_PATH=${XAPI_PATH}'
       - 'XAPI_PORT=${XAPI_PORT}'
       - 'XAPI_PASS=${XAPI_PASS}'
-    restart: always
     build: ../../xen-api/docker/rest/
+
   syslog-collector:
     ports:
       - 65514:514/tcp
@@ -82,8 +82,8 @@ services:
       - 'MONGODB_URI=${MONGODB_URI}'
     links:
       - mongodb:nowhere-mongodb
-    restart: always
     build: ../../node-mongo-syslog/
+
   api-gate:
     ports:
       - 3000:3000

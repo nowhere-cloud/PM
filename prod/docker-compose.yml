@@ -154,4 +154,4 @@ services:
       - mongodb:nowhere-mongodb
       - mysql:mysql
       - xen-api:xen-rest
-    build: ./node-api-gate-master/
+    image: nowherecloud/node-api-gate:latest
