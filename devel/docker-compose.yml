@@ -85,8 +85,6 @@ services:
     build: ../../node-mongo-syslog/
 
   api-gate:
-    ports:
-      - 3000:3000
     environment:
       - 'MONGODB_URI=${MONGODB_URI}'
       - 'AMQP_URI=${AMQP_URI}'
@@ -101,3 +99,18 @@ services:
       - mysql:mysql
       - xen-api:xen-rest
     build: ../../node-api-gate/
+
+  front-end:
+    ports:
+      - 3000:80
+    environment:
+      - 'SESS_KEY=${SESSION_K}'
+      - 'MYSQL_USER=${MYSQL_USER}'
+      - 'MYSQL_PASS=${MYSQL_PASS}'
+      - 'MYSQL_DB=${MYSQL_DB}'
+    links:
+      - api-gate:api
+      - mysql:mysql
+    volumes:
+      - '../../node-frontend:/srv'
+    build: ../nodemon

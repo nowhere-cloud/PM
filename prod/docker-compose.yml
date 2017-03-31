@@ -149,6 +149,7 @@ services:
       - 'MYSQL_DB=${MYSQL_DB}'
       - 'XAPI_PATH=${XAPI_PATH}'
       - 'XAPI_PORT=${XAPI_PORT}'
+      - 'SESS_KEY=${SESSION_K}'
     links:
       - rabbitmq:nowhere-rabbitmq
       - mongodb:nowhere-mongodb
