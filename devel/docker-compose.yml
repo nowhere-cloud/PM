@@ -108,6 +108,7 @@ services:
       - 'MYSQL_USER=${MYSQL_USER}'
       - 'MYSQL_PASS=${MYSQL_PASS}'
       - 'MYSQL_DB=${MYSQL_DB}'
+      - 'NODE_ENV=production'
     links:
       - api-gate:api
       - mysql:mysql
