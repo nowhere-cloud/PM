@@ -6,4 +6,4 @@ RUN npm install -g nodemon
 
 VOLUME ["/srv"]
 
-ENTRYPOINT ["nodemon"]
+ENTRYPOINT ["nodemon", "-e", "js,pug"]

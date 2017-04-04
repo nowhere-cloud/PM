@@ -118,6 +118,7 @@ services:
     image: nowherecloud/xen-api:vm
     links:
       - rabbitmq:nowhere-rabbitmq
+  # Backend Hypervisor API
   xen-api:
     environment:
       - 'AMQP_URI=${AMQP_URI}'
@@ -128,6 +129,7 @@ services:
     image: nowherecloud/xen-api:rest
     links:
       - rabbitmq:nowhere-rabbitmq
+  # Syslog Collector
   syslog-collector:
     ports:
       - 10.1.123.11:514:514/tcp
@@ -138,9 +140,8 @@ services:
       - mongodb:nowhere-mongodb
     restart: always
     image: nowherecloud/node-mongo-syslog:latest
+  # Backend API
   api-gate:
-    ports:
-      - 3000:3000
     environment:
       - 'MONGODB_URI=${MONGODB_URI}'
       - 'AMQP_URI=${AMQP_URI}'
@@ -149,10 +150,28 @@ services:
       - 'MYSQL_DB=${MYSQL_DB}'
       - 'XAPI_PATH=${XAPI_PATH}'
       - 'XAPI_PORT=${XAPI_PORT}'
-      - 'SESS_KEY=${SESSION_K}'
     links:
       - rabbitmq:nowhere-rabbitmq
       - mongodb:nowhere-mongodb
       - mysql:mysql
       - xen-api:xen-rest
     image: nowherecloud/node-api-gate:latest
+  # Keep Alive Helper Container
+  keepalive:
+    links:
+      - xen-api:xen-rest
+    image: nowherecloud/node-keepalive
+  # Front-End WIP
+  front-end:
+    ports:
+      - 80:80
+    environment:
+      - 'SESS_KEY=${SESSION_K}'
+      - 'MYSQL_USER=${MYSQL_USER}'
+      - 'MYSQL_PASS=${MYSQL_PASS}'
+      - 'MYSQL_DB=${MYSQL_DB}'
+      - 'NODE_ENV=production'
+    links:
+      - api-gate:api
+      - mysql:mysql
+    build: ../node-frontend-master

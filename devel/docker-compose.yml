@@ -15,11 +15,13 @@ services:
       - MYSQL_RANDOM_ROOT_PASSWORD=yes
     image: mysql/mysql-server:latest
 
+  # DNS Cache
   bind:
     image: ventz/bind
     volumes:
       - '../prod/etc/bind:/etc/bind'
 
+  # DNS Server
   dns-vlan20-11:
     ports:
       - 65053:53/tcp
@@ -67,6 +69,7 @@ services:
     links:
       - rabbitmq:nowhere-rabbitmq
 
+  # Xen API REST
   xen-api:
     environment:
       - 'XAPI_PATH=${XAPI_PATH}'
@@ -74,6 +77,7 @@ services:
       - 'XAPI_PASS=${XAPI_PASS}'
     build: ../../xen-api/docker/rest/
 
+  # Syslog Server
   syslog-collector:
     ports:
       - 65514:514/tcp
@@ -84,6 +88,7 @@ services:
       - mongodb:nowhere-mongodb
     build: ../../node-mongo-syslog/
 
+  # Backend API
   api-gate:
     environment:
       - 'MONGODB_URI=${MONGODB_URI}'
@@ -100,6 +105,7 @@ services:
       - xen-api:xen-rest
     build: ../../node-api-gate/
 
+  # Front End
   front-end:
     ports:
       - 3000:80
@@ -115,3 +121,9 @@ services:
     volumes:
       - '../../node-frontend:/srv'
     build: ../nodemon
+
+  # Keep Alive Helper Container
+  keepalive:
+    links:
+      - xen-api:xen-rest
+    build: ../../node-keepalive
