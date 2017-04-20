@@ -115,6 +115,7 @@ services:
       - 'MYSQL_PASS=${MYSQL_PASS}'
       - 'MYSQL_DB=${MYSQL_DB}'
       - 'NODE_ENV=production'
+      - 'BOOT_KEY=${BOOT_KEY}'
     links:
       - api-gate:api
       - mysql:mysql
