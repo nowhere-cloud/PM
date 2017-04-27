@@ -156,11 +156,13 @@ services:
       - mysql:mysql
       - xen-api:xen-rest
     image: nowherecloud/node-api-gate:latest
+    restart: always
   # Keep Alive Helper Container
   keepalive:
     links:
       - xen-api:xen-rest
     image: nowherecloud/node-keepalive
+    restart: always
   # Front-End WIP
   front-end:
     ports:
