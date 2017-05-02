@@ -161,7 +161,7 @@ services:
   keepalive:
     links:
       - xen-api:xen-rest
-    image: nowherecloud/node-keepalive
+    image: nowherecloud/node-keepalive:latest
     restart: always
   # Front-End WIP
   front-end:
@@ -173,8 +173,13 @@ services:
       - 'MYSQL_PASS=${MYSQL_PASS}'
       - 'MYSQL_DB=${MYSQL_DB}'
       - 'NODE_ENV=production'
-      - 'BOOT_KEY=${BOOT_KEY}'
     links:
       - api-gate:api
       - mysql:mysql
+      - auth:auth
     build: ../node-frontend-master
+  # Front-end AuthenticationServer
+  auth:
+    environment:
+      - 'BOOT_KEY=${BOOT_KEY}'
+    image: nowherecloud/node-simpleauth:latest

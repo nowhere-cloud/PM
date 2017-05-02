@@ -115,10 +115,10 @@ services:
       - 'MYSQL_PASS=${MYSQL_PASS}'
       - 'MYSQL_DB=${MYSQL_DB}'
       - 'NODE_ENV=production'
-      - 'BOOT_KEY=${BOOT_KEY}'
     links:
       - api-gate:api
       - mysql:mysql
+      - auth:auth
     volumes:
       - '../../node-frontend:/srv'
     build: ../nodemon
@@ -128,3 +128,8 @@ services:
     links:
       - xen-api:xen-rest
     build: ../../node-keepalive
+
+  auth:
+    environment:
+      - 'BOOT_KEY=${BOOT_KEY}'
+    build: ../../node-simpleauth
