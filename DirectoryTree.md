@@ -1,3 +1,4 @@
+```
 middleware-experiment/
 ├── .editorconfig
 ├── .gitignore
@@ -37,62 +38,7 @@ middleware-experiment/
 │ ├── .rubocop.yml
 │ ├── Gemfile
 │ ├── Gemfile.lock
-│ ├─┬ doc
-│ │ ├── Gemfile.html
-│ │ ├── Gemfile_lock.html
-│ │ ├── Object.html
-│ │ ├── Processor.html
-│ │ ├── Rabbit.html
-│ │ ├── Tools.html
-│ │ ├── created.rid
-│ │ ├─┬ css
-│ │ │ ├── fonts.css
-│ │ │ └── rdoc.css
-│ │ ├─┬ fonts
-│ │ │ ├── Lato-Light.ttf
-│ │ │ ├── Lato-LightItalic.ttf
-│ │ │ ├── Lato-Regular.ttf
-│ │ │ ├── Lato-RegularItalic.ttf
-│ │ │ ├── SourceCodePro-Bold.ttf
-│ │ │ └── SourceCodePro-Regular.ttf
-│ │ ├─┬ images
-│ │ │ ├── add.png
-│ │ │ ├── arrow_up.png
-│ │ │ ├── brick.png
-│ │ │ ├── brick_link.png
-│ │ │ ├── bug.png
-│ │ │ ├── bullet_black.png
-│ │ │ ├── bullet_toggle_minus.png
-│ │ │ ├── bullet_toggle_plus.png
-│ │ │ ├── date.png
-│ │ │ ├── delete.png
-│ │ │ ├── find.png
-│ │ │ ├── loadingAnimation.gif
-│ │ │ ├── macFFBgHack.png
-│ │ │ ├── package.png
-│ │ │ ├── page_green.png
-│ │ │ ├── page_white_text.png
-│ │ │ ├── page_white_width.png
-│ │ │ ├── plugin.png
-│ │ │ ├── ruby.png
-│ │ │ ├── tag_blue.png
-│ │ │ ├── tag_green.png
-│ │ │ ├── transparent.png
-│ │ │ ├── wrench.png
-│ │ │ ├── wrench_orange.png
-│ │ │ └── zoom.png
-│ │ ├── index.html
-│ │ ├─┬ js
-│ │ │ ├── darkfish.js
-│ │ │ ├── jquery.js
-│ │ │ ├── navigation.js
-│ │ │ ├── navigation.js.gz
-│ │ │ ├── search.js
-│ │ │ ├── search_index.js
-│ │ │ ├── search_index.js.gz
-│ │ │ ├── searcher.js
-│ │ │ └── searcher.js.gz
-│ │ └── table_of_contents.html
+│ ├── doc
 │ └── index.rb
 └── shot.png
 
@@ -383,4 +329,4 @@ xen-api/
 └── xenapi.rb
 
 11 directories, 83 files
-
+```
