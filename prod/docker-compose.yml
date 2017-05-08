@@ -183,3 +183,12 @@ services:
     environment:
       - 'BOOT_KEY=${BOOT_KEY}'
     image: nowherecloud/node-simpleauth:latest
+
+  receiver:
+    environment:
+      - 'MONGODB_URI=${MONGODB_URI}'
+      - 'AMQP_URI=${AMQP_URI}'
+    links:
+      - rabbitmq:nowhere-rabbitmq
+      - mongodb:nowhere-mongodb
+    image: nowherecloud/node-receiver:latest
