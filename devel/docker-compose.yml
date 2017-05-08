@@ -129,7 +129,18 @@ services:
       - xen-api:xen-rest
     build: ../../node-keepalive
 
+  # Admin Authenticator
   auth:
     environment:
       - 'BOOT_KEY=${BOOT_KEY}'
     build: ../../node-simpleauth
+
+  # RabbitMQ Response Feeder
+  receiver:
+    environment:
+      - 'MONGODB_URI=${MONGODB_URI}'
+      - 'AMQP_URI=${AMQP_URI}'
+    links:
+      - rabbitmq:nowhere-rabbitmq
+      - mongodb:nowhere-mongodb
+    build: ../../node-receiver
