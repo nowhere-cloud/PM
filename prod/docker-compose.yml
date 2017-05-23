@@ -177,7 +177,7 @@ services:
       - api-gate:api
       - mysql:mysql
       - auth:auth
-    build: ../node-frontend-master
+    image: nowhere-cloud/node-frontend:latest
   # Front-end AuthenticationServer
   auth:
     environment:
